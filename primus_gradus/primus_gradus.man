@@ -1,0 +1,217 @@
+## service
+
+    $ sudo service docker status
+    activ
+
+## hello world
+
+    $ docer run hello-world
+
+    Unable to find image 'hello-world:latest' locally
+    latest: Pulling from library/hello-world
+    719385e32844: Pull complete 
+    Digest: sha256:dcba6daec718f547568c562956fa47e1b03673dd010fe6ee58ca806767031d1c
+    Status: Downloaded newer image for hello-world:latest
+    
+    Hello from Docker!
+    This message shows that your installation appears to be working correctly.
+    
+    To generate this message, Docker took the following steps:
+     1. The Docker client contacted the Docker daemon.
+     2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+        (amd64)
+     3. The Docker daemon created a new container from that image which runs the
+        executable that produces the output you are currently reading.
+     4. The Docker daemon streamed that output to the Docker client, which sent it
+        to your terminal.
+    
+    To try something more ambitious, you can run an Ubuntu container with:
+     $ docker run -it ubuntu bash
+    
+    Share images, automate workflows, and more with a free Docker ID:
+     https://hub.docker.com/
+    
+    For more examples and ideas, visit:
+     https://docs.docker.com/get-started/
+
+## host_fs
+
+    # ls /var/lib/docker/
+        buildkit  
+        containers  
+        engine-id  
+        image  
+        network  
+        overlay2  
+        plugins  
+        runtimes  
+        swarm  
+        tmp  
+        volumes
+
+    # ls /usr/lib/docker/
+        cli-plugins
+
+
+
+## info 
+
+    $ docker info
+
+            Client:
+         Context:    default
+         Debug Mode: false
+         Plugins:
+          buildx: Docker Buildx (Docker Inc.)
+            Version:  0.0.0+unknown
+            Path:     /usr/lib/docker/cli-plugins/docker-buildx
+          compose: Docker Compose (Docker Inc.)
+            Version:  2.16.0
+            Path:     /usr/lib/docker/cli-plugins/docker-compose
+        
+        Server:
+         Containers: 1
+          Running: 0
+          Paused: 0
+          Stopped: 1
+         Images: 1
+         Server Version: 23.0.1
+         Storage Driver: overlay2
+          Backing Filesystem: extfs
+          Supports d_type: true
+          Using metacopy: true
+          Native Overlay Diff: false
+          userxattr: false
+         Logging Driver: journald
+         Cgroup Driver: systemd
+         Cgroup Version: 2
+         Plugins:
+          Volume: local
+          Network: bridge host ipvlan macvlan null overlay
+          Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+         Swarm: inactive
+         Runtimes: docker-runc io.containerd.runc.v2 runc
+         Default Runtime: docker-runc
+         Init Binary: /usr/bin/tini
+         containerd version: 31aa435
+         runc version: 5fd4c4d
+         init version: 
+         Security Options:
+          seccomp
+           Profile: builtin
+          cgroupns
+         Kernel Version: 6.1.42-un-def-alt1
+         Operating System: ALT Workstation K 10.2 (Sorbaronia Mitschurinii)
+         OSType: linux
+         Architecture: x86_64
+         CPUs: 8
+         Total Memory: 3.722GiB
+         Name: host-108
+         ID: bed04115-d2ac-46bc-a7a9-e2f23dc8b72d
+         Docker Root Dir: /var/lib/docker
+         Debug Mode: false
+         Registry: https://index.docker.io/v1/
+         Experimental: false
+         Insecure Registries:
+          127.0.0.0/8
+         Live Restore Enabled: true
+        
+## docker inspect hello-world
+    $ docker inspect hello-world
+
+        [
+        {
+            "Id": "sha256:9c7a54a9a43cca047013b82af109fe963fde787f63f9e016fdc3384500c2823d",
+            "RepoTags": [
+                "hello-world:latest"
+            ],
+            "RepoDigests": [
+                "hello-world@sha256:dcba6daec718f547568c562956fa47e1b03673dd010fe6ee58ca806767031d1c"
+            ],
+            "Parent": "",
+            "Comment": "",
+            "Created": "2023-05-04T17:37:03.872958712Z",
+            "Container": "347ca68872ee924c4f9394b195dcadaf591d387a45d624225251efc6cb7a348e",
+            "ContainerConfig": {
+                "Hostname": "347ca68872ee",
+                "Domainname": "",
+                "User": "",
+                "AttachStdin": false,
+                "AttachStdout": false,
+                "AttachStderr": false,
+                "Tty": false,
+                "OpenStdin": false,
+                "StdinOnce": false,
+                "Env": [
+                    "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                ],
+                "Cmd": [
+                    "/bin/sh",
+                    "-c",
+                    "#(nop) ",
+                    "CMD [\"/hello\"]"
+                ],
+                "Image": "sha256:62a15619037f3c4fb4e6ba9bd224cba3540e393a55dc52f6bebe212ca7b5e1a7",
+                "Volumes": null,
+                "WorkingDir": "",
+                "Entrypoint": null,
+                "OnBuild": null,
+                "Labels": {}
+            },
+            "DockerVersion": "20.10.23",
+            "Author": "",
+            "Config": {
+                "Hostname": "",
+                "Domainname": "",
+                "User": "",
+                "AttachStdin": false,
+                "AttachStdout": false,
+                "AttachStderr": false,
+                "Tty": false,
+                "OpenStdin": false,
+                "StdinOnce": false,
+                "Env": [
+                    "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                ],
+                "Cmd": [
+                    "/hello"
+                ],
+                "Image": "sha256:62a15619037f3c4fb4e6ba9bd224cba3540e393a55dc52f6bebe212ca7b5e1a7",
+                "Volumes": null,
+                "WorkingDir": "",
+                "Entrypoint": null,
+                "OnBuild": null,
+                "Labels": null
+            },
+            "Architecture": "amd64",
+            "Os": "linux",
+            "Size": 13256,
+            "VirtualSize": 13256,
+            "GraphDriver": {
+                "Data": {
+                    "MergedDir": "/var/lib/docker/overlay2/83217d979f84ff1c222530288e6006aaa61555550ab64f8e696547c2fbe48f5c/merged",
+                    "UpperDir": "/var/lib/docker/overlay2/83217d979f84ff1c222530288e6006aaa61555550ab64f8e696547c2fbe48f5c/diff",
+                    "WorkDir": "/var/lib/docker/overlay2/83217d979f84ff1c222530288e6006aaa61555550ab64f8e696547c2fbe48f5c/work"
+                },
+                "Name": "overlay2"
+            },
+            "RootFS": {
+                "Type": "layers",
+                "Layers": [
+                    "sha256:01bb4fce3eb1b56b05adf99504dafd31907a5aadac736e36b27595c8b92f07f1"
+                ]
+            },
+            "Metadata": {
+                "LastTagTime": "0001-01-01T00:00:00Z"
+            }
+        }
+    ]
+
+## docker ps
+
+    $ docker ps
+    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+    $ docker ps -a
+    CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+    f2ae73e231df   hello-world   "/hello"   55 minutes ago   Exited (0) 55 minutes ago             zen_gates
