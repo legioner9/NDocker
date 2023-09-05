@@ -1,0 +1,31 @@
+# https://proglib.io/p/docker
+
+## docker run -d --name test-nginx -p 80:80 -v $(pwd):/usr/share/nginx/html:ro nginx:latest
+
+    $ f0c36011862349219c7375082077ece72b360db9323e96452484db15e15e854c
+
+## docker inspect f0c
+
+## Dockerfile
+- FROM – задать базовый образ
+- RUN – выполнить команду в контейнере
+- ENV – задать переменную среды
+- WORKDIR – установить рабочий каталог
+- VOLUME – создать точку монтирования для тома
+- CMD – установить исполняемый файл для контейнера
+
+### Dockerfile :
+
+    FROM ubuntu:latest  
+    RUN apt-get update  
+    RUN apt-get install --no-install-recommends --no-install-suggests -y curl  
+    ENV SITE_URL https://google.com/  
+    WORKDIR /data  
+    VOLUME /data  
+    CMD sh -c "curl -L $SITE_URL > /data/results"
+
+## docker build
+
+    $ cd test_dir
+    $ docker build . -t test-curl 
+    $ docker images

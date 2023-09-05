@@ -1,20 +1,46 @@
 ## docker pull ; start 
 
-    $ docker pull alpine
+    $ docker pull ubuntu
 
 ## docker images 
 
     $ docker images
         REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-        alpine       latest    7e01a0d0a1dc   4 weeks ago   7.33MB
+        ubuntu       latest    7e01a0d0a1dc   4 weeks ago   7.33MB
 
 ## docker run 
 
-    $ docker run alpine
+    $ docker run ubuntu
 
 ## docker ps -a 
 
     $ docker ps -a    
         CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS                     PORTS     NAMES
-        5f8053bdec4c   alpine    "/bin/sh"   2 minutes ago   Exited (0) 2 minutes ago             nifty_sammet
-    
+        5f8053bdec4c   ubuntu    "/bin/sh"   2 minutes ago   Exited (0) 2 minutes ago             nifty_sammet
+
+    $ docker rm 5f8
+        5f8
+
+## docker run [comand] 
+
+    $ docker run ubuntu echo "Hi Docker!!!"
+        Hi Docker!!!
+
+## docker pause [unpause]
+
+## docker run -it
+
+    $ docker run -it ubuntu sh
+        root@19fd68030d7a:/#
+
+## docker rm <auto>
+
+    $ docker rm $(docker ps -a -q -f status=exited)
+    $ docker rm $(docker ps -a -q)
+
+## docker run --rm
+
+    $ docker run --rm ubuntu
+    $ docker ps -a
+        <empty>
+
