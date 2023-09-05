@@ -1,0 +1,20 @@
+## docker pull ; start 
+
+    $ docker pull alpine
+
+## docker images 
+
+    $ docker images
+        REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+        alpine       latest    7e01a0d0a1dc   4 weeks ago   7.33MB
+
+## docker run 
+
+    $ docker run alpine
+
+## docker ps -a 
+
+    $ docker ps -a    
+        CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS                     PORTS     NAMES
+        5f8053bdec4c   alpine    "/bin/sh"   2 minutes ago   Exited (0) 2 minutes ago             nifty_sammet
+    
