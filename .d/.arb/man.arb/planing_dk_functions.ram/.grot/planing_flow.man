@@ -49,7 +49,7 @@ FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
-VARIANT: mm_img_name to arg
+VARIANT 1: mm_img_name to arg
 MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
 RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
 NAME:
@@ -62,16 +62,28 @@ EXEC: FUNCTION 0 "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
 ------------------------------------------------------
 
 ------------------------------------------------------
-VARIANT: mm_img_name to mm_arg_resiver
+VARIANT 2: mm_img_name to mm_arg_resiver
 MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
 RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
 NAME:
 FLOW: 
 
     mm_1 eligendi <img_name> as {inserter_img_name}
+        arg_1
+            <num> - num img
+            0     - eligendi mm img
     mm_2 eligendi arg_resiver with insert inserter_img
-        
-    docker run "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+        arg_2 file.args from ${PLT_PATH}/.d/.args
+            <num> - num file.args
+            0     - eligendi mm file.args
+            <not_num> - EXEC VARIANT 1
+        arg_3 mm from string file.args :: name_menu<>args_with_resiver
+            insert :: img -> string
+            <num> - num strimng
+            0     - eligendi mm strimng
+    
+    docker run "$string"
 
-EXEC: FUNCTION 0 "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+EXEC VARIANT 1: FUNCTION 0 "[OPTIONS] {} [COMMAND] [ARG...]"
+EXEC VARIANT 2: FUNCTION 0 0 0
 ------------------------------------------------------
