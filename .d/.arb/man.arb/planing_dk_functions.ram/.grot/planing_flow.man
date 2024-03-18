@@ -1,0 +1,77 @@
+
+------------------------------------------------------
+MAIN: 
+RUN:
+NAME:
+FLOW:
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: ls all images
+RUN: docker images
+NAME:
+FLOW:
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: ls all contaners
+RUN: docker ps -a
+NAME: 
+FLOW:
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: ls runing contaners
+RUN: docker ps
+NAME:
+FLOW:
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: rm all contaners
+RUN:
+    local arr_ps_a_q=("$(docker ps -a -q)")
+
+    if [[ -n ${arr_ps_a_q[0]} ]]; then
+        docker rm $(docker ps -a -q)
+    else
+        plt_info "EMPTY :: docker ps -a -q"
+    fi
+NAME:
+FLOW:
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: run
+RUN: docker run <img_name>
+NAME:
+FLOW:
+------------------------------------------------------
+
+------------------------------------------------------
+VARIANT: mm_img_name to arg
+MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
+RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
+NAME:
+FLOW: 
+
+    mm_1 eligendi <img_name> as {inserter_img_name}
+    docker run "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+
+EXEC: FUNCTION 0 "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+------------------------------------------------------
+
+------------------------------------------------------
+VARIANT: mm_img_name to mm_arg_resiver
+MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
+RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
+NAME:
+FLOW: 
+
+    mm_1 eligendi <img_name> as {inserter_img_name}
+    mm_2 eligendi arg_resiver with insert inserter_img
+        
+    docker run "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+
+EXEC: FUNCTION 0 "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+------------------------------------------------------
