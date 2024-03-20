@@ -9,27 +9,27 @@ FLOW:
 ------------------------------------------------------
 MAIN: ls all images
 RUN: docker images
-NAME:
+NAME: dk_ls_al_img__
 FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
 MAIN: ls all contaners
 RUN: docker ps -a
-NAME: 
+NAME: dk_ls_al_cont__
 FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
 MAIN: ls runing contaners
 RUN: docker ps
-NAME:
+NAME: dk_ls_runi_cont__
 FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
 MAIN: rm all contaners
-RUN:
+RUN: dk_rm_al_cont__
     local arr_ps_a_q=("$(docker ps -a -q)")
 
     if [[ -n ${arr_ps_a_q[0]} ]]; then
@@ -42,6 +42,29 @@ FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
+MAIN: pull
+RUN: docker pull <img_name>
+NAME: dk_pull_mmimg__
+FLOW:
+    mm elegendi <img_name>
+    docker pull <img_name>
+
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: stop
+RUN: docker stop <id_cont>
+NAME: dk_stop_mmcont__
+FLOW:
+    mm elegendi 
+        generator [docker ps -q ]
+           
+    docker pull <img_name>
+
+------------------------------------------------------
+
+------------------------------------------------------
+VARIANT 0: mm_img_name
 MAIN: run
 RUN: docker run <img_name>
 NAME:
@@ -65,7 +88,7 @@ EXEC: FUNCTION 0 "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
 VARIANT 2: mm_img_name to mm_arg_resiver
 MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
 RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
-NAME:
+NAME: dk_run_mmimg_mmarg__
 FLOW: 
 
     mm_1 eligendi <img_name> as {inserter_img_name}

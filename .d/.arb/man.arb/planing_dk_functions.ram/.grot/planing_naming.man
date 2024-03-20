@@ -1,10 +1,10 @@
 [al] - all
-[st] - stop
+[stpd] - stoped
 [ps] - process
 [kl] - kill
 [rm] - remove
 [mm]  - menu
-[im] - image
+[img] - image
 [pull]
 [push]
 [runi]- running
@@ -21,15 +21,16 @@ do:
 
 how:
 
+[stpd] - stoped
 [runi]- from running
 [al] - from all
 [mm] - from menu
 [arg]- from args with resiver
 [mmstr] - from mm string with resiver 
 
-what:
+what: 
 
-[im]
+[img]
 [cont]
 
 do how what
