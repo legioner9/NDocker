@@ -56,9 +56,9 @@ MAIN: stop
 RUN: docker stop <id_cont>
 NAME: dk_stop_mmcont__
 FLOW:
-    mm elegendi 
-        generator [docker ps -q ]
-           
+    mm elegendi  
+        menu_name [docker ps]
+        menu_result [docker ps -q]
     docker pull <img_name>
 
 ------------------------------------------------------
