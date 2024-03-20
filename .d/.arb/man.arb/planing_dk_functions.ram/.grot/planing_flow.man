@@ -54,7 +54,7 @@ FLOW:
 ------------------------------------------------------
 MAIN: stop
 RUN: docker stop <id_cont>
-NAME: dk_stop_mmcont__
+NAME: dk_stop_runi_mmcont__
 FLOW:
     mm elegendi  
         menu_name [docker ps]
