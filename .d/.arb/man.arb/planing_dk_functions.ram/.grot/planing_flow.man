@@ -90,7 +90,12 @@ VARIANT 2: mm_img_name to mm_arg_resiver
 MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
 RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
 NAME: dk_run_mmimg_mmarg__
-            dk_run_mmimg_mmarg__
+
+
+            dk_run_mm_lst_img_mmarg__ run img from ${PD_PATH}/.d/.lst/dk_pull_mmimg__ with arg from ${PD_PATH}/.d/.lst/dk_run_mmimg_mmarg__/args
+
+            dk_run_mm_puli_img_mmarg__ docker run img from $(docker images)->id with arg from ${PD_PATH}/.d/.lst/dk_run_mmimg_mmarg__/args
+
 FLOW: 
 
     mm_1 eligendi <img_name> as {inserter_img_name}
@@ -111,4 +116,11 @@ FLOW:
 
 EXEC VARIANT 1: FUNCTION 0 "[OPTIONS] {} [COMMAND] [ARG...]"
 EXEC VARIANT 2: FUNCTION 0 0 0
+------------------------------------------------------
+
+------------------------------------------------------
+MAIN: 
+RUN:
+NAME: dk_rm_mm_puli_img__
+FLOW:
 ------------------------------------------------------
