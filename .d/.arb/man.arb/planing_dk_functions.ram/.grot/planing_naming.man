@@ -5,6 +5,8 @@
 [rm] - remove
 [mm]  - menu
 [img] - image
+    [gimg] - global img
+    [limg] - local img
 [pull]
 [push]
 [runi]- running

@@ -90,6 +90,7 @@ VARIANT 2: mm_img_name to mm_arg_resiver
 MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
 RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
 NAME: dk_run_mmimg_mmarg__
+            dk_run_mmimg_mmarg__
 FLOW: 
 
     mm_1 eligendi <img_name> as {inserter_img_name}
