@@ -21,6 +21,7 @@ FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
++
 MAIN: ls runing contaners
 RUN: docker ps
 NAME: dk_ls_runi_cont__
@@ -28,8 +29,8 @@ FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
-MAIN: rm all contaners
-RUN: dk_rm_al_cont__
+MAIN: rm all run contaners 
+RUN: dk_rm_al_runi_cont__
     local arr_ps_a_q=("$(docker ps -a -q)")
 
     if [[ -n ${arr_ps_a_q[0]} ]]; then
