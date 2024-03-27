@@ -53,10 +53,9 @@ FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
-+
 MAIN: stop
 RUN: docker stop <id_cont>
-NAME: dk_stop_al_cont__
+NAME: dk_stop_runi_mmcont__
 FLOW:
     mm elegendi  
         menu_name [docker ps]
@@ -66,33 +65,62 @@ FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
-+
-MAIN: docker run img from ${PD_PATH}/.d/.lst/dk_pull_mmimg__ with arg from ${PD_PATH}/.d/.lst/dk_run_mmimg_mmarg__/args
-RUN: 
-NAME: dk_run_mm_lst_img_mmarg__
+VARIANT 0: mm_img_name
+MAIN: run
+RUN: docker run <img_name>
+NAME:
 FLOW:
 ------------------------------------------------------
 
 ------------------------------------------------------
-+
-MAIN: docker run img from $(docker images)->id with arg from ${PD_PATH}/.d/.lst/dk_run_mmimg_mmarg__/args
-RUN:
-NAME: dk_run_mm_puli_img_mmarg__
-FLOW:
+VARIANT 1: mm_img_name to arg
+MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
+RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
+NAME:
+FLOW: 
+
+    mm_1 eligendi <img_name> as {inserter_img_name}
+    docker run "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
+
+EXEC: FUNCTION 0 "[OPTIONS] {resiver_img_name} [COMMAND] [ARG...]"
 ------------------------------------------------------
 
 ------------------------------------------------------
-- 
+VARIANT 2: mm_img_name to mm_arg_resiver
+MAIN: run [OPTIONS] <img_name> [COMMAND] [ARG...]
+RUN: docker run [OPTIONS] <img_name> [COMMAND] [ARG...]
+NAME: dk_run_mmimg_mmarg__
+
+
+            dk_run_mm_lst_img_mmarg__ run img from ${PD_PATH}/.d/.lst/dk_pull_mmimg__ with arg from ${PD_PATH}/.d/.lst/dk_run_mmimg_mmarg__/args
+
+            dk_run_mm_puli_img_mmarg__ docker run img from $(docker images)->id with arg from ${PD_PATH}/.d/.lst/dk_run_mmimg_mmarg__/args
+
+FLOW: 
+
+    mm_1 eligendi <img_name> as {inserter_img_name}
+        arg_1
+            <num> - num img
+            0     - eligendi mm img
+    mm_2 eligendi arg_resiver with insert inserter_img
+        arg_2 file.args from ${PLT_PATH}/.d/.args
+            <num> - num file.args
+            0     - eligendi mm file.args
+            <not_num> - EXEC VARIANT 1
+        arg_3 mm from string file.args :: name_menu<>args_with_resiver
+            insert :: img -> string
+            <num> - num strimng
+            0     - eligendi mm strimng
+    
+    docker run "$string"
+
+EXEC VARIANT 1: FUNCTION 0 "[OPTIONS] {} [COMMAND] [ARG...]"
+EXEC VARIANT 2: FUNCTION 0 0 0
+------------------------------------------------------
+
+------------------------------------------------------
 MAIN: remove pulled img 
 RUN: docker rmi -f <img_id>
 NAME: dk_rm_mm_puli_img__
 FLOW:
 ------------------------------------------------------
-
-------------------------------------------------------
-?
-MAIN: remove lst img 
-RUN: docker rmi -f <img_id>
-NAME: dk_rm_mm_lst_img__
-FLOW:
------------------------------------------------------- 
